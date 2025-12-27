@@ -1,6 +1,6 @@
 --- 
 - name: configure backend server 
-  hosts: backend 
+  hosts: backend
   become: yes  
   tasks: 
   - name: disable nodejs 
@@ -23,16 +23,16 @@
       path: /app 
       state: directory 
 
-  # - name: Download the application code to created app directory
-  #   ansible.builtin.get_url:
-  #     url: https://expense-builds.s3.us-east-1.amazonaws.com/expense-backend-v2.zip
-  #     dest: /tmp/backend.zip
+  - name: Download the application code to created app directory
+    ansible.builtin.get_url:
+      url: https://expense-builds.s3.us-east-1.amazonaws.com/expense-backend-v2.zip
+      dest: /tmp/backend.zip
 
-  # - name: unzip the application code 
-  #   ansible.builtin.unarchive:
-  #     src: /tmp/backend.zip
-  #     dest: /app 
-  #     remote_src: yes
+  - name: unzip the application code 
+    ansible.builtin.unarchive:
+      src: /tmp/backend.zip
+      dest: /app 
+      remote_src: yes
 
 
 
