@@ -48,6 +48,13 @@
       src: backend.service 
       dest: /etc/systemd/system/backend.service
 
+  - name: daemon-reload of the service 
+    ansible.builtin.systemd_service: 
+      enabled: true 
+      state: restarted
+      daemon_reload: true
+      name: backend 
+
   - name: install python libraries 
     ansible.builtin.pip:
       name: "{{ item }}"
@@ -65,7 +72,10 @@
       login_password: "{{ mysql_root_password }}"
       login_host: "{{ mysql_host }}"
   
-
+  - name: restart the service 
+    ansible.builtin.service: 
+      name: backend 
+      state: restarted
 
 
 
